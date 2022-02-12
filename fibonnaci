@@ -1,0 +1,9 @@
+fibannoci_list = []
+number_of_numbers = int(input("Entyer how many numbers to be seen in fibo series"))
+for number in range(number_of_numbers):
+  if number == 0 or number == 1:
+    fibannoci_list.append(1)
+  else:
+    fibannoci_list.append(sum(fibannoci_list[number-2:number]))
+
+print(fibannoci_list)
