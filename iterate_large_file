@@ -1,0 +1,10 @@
+#if size of file is big(in TBs) this will not work
+with open("filename.txt",'r') as f:
+    data = f.readlines() #this will load entire file into memory
+for line in data:
+    print(line)
+
+with open("filename.txt",'r') as f:
+    for line in f:
+        print(line) #this acts like generator one line at a time
+
