@@ -1,0 +1,26 @@
+from decimal import Decimal
+import json
+
+"""
+# note: decimal number should be converted to float before applying json.dumps()
+#for that we need to create a customized JSONEncoder
+at object use cls=customizedEncoder otherwise it will go to default encoder
+"""
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self,obj):
+        if isinstance(obj,Decimal):
+            return float(obj)
+        else:
+            return int(obj)
+        return json.JSONEncoder.default(self,obj)
+
+# decimal numbers are presented in the below format
+num = Decimal(3.14)
+print(type(num))  # this is og type decimal
+value = json.dumps(num,cls=DecimalEncoder)  # TypeError: Object of type Decimal is not JSON serializable
+print(value)
+"""
+num = 3.14
+print(type(num)) #this will be of type float
+"""
